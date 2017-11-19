@@ -9,7 +9,7 @@ public class Solution {
         this.solutions = solutions;
     }
 
-    public List<Step> solutions;
+    final public List<Step> solutions;
 
     @Override
     public String toString() {

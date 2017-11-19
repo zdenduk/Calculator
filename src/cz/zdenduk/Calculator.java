@@ -17,11 +17,8 @@ public class Calculator {
     }
 
     private Node createTree(int round, int start, Step lastStep) {
-        if (round == 0) {
-            return Node.create(start, lastStep, new ArrayList<>());
-        } else {
-            return Node.create(start, lastStep, steps.stream().map(step -> createTree(round - 1, step.calculate(start), step)).collect(Collectors.toList()));
-        }
+        return round == 0 ? Node.create(start, lastStep, new ArrayList<>()) :
+                Node.create(start, lastStep, steps.stream().map(step -> createTree(round - 1, step.calculate(start), step)).collect(Collectors.toList()));
     }
 
     public void printTree() {
@@ -30,24 +27,21 @@ public class Calculator {
 
     private List<Solution> solve(final Node node, final int aim, List<Step> solutions) {
         if (aim == node.data && node.sub.isEmpty()) {
-            /*System.out.println("1.)" + node.data + " = " + (aim == node.data && node.sub.isEmpty()));*/
             return new ArrayList<Solution>() {{
                 add(new Solution(solutions));
             }};
         } else if (node.sub.isEmpty()) {
-            /*System.out.println("2.)" + node.sub.isEmpty());*/
             return new ArrayList<>();
         } else {
-            /*System.out.println("3)");*/
             return node.sub.stream().flatMap(i -> {
-                ArrayList<Step> newSteps = new ArrayList(solutions);
-                newSteps.add(i.step);
+                ArrayList<Step> newSteps = new ArrayList(solutions) {{
+                    add(i.step);
+                }};
                 return solve(i, aim, newSteps).stream();
             }).collect(Collectors.toList());
         }
     }
-
-
+    
     public List<Solution> solve(int end) {
         return solve(node, end, new ArrayList<>());
     }

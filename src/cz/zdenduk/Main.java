@@ -12,8 +12,8 @@ public class Main {
         steps.add(new MultiplyStep(3));
         steps.add(new MinusStep(8));
 
-        Calculator calc = new Calculator(steps, 2, 1);
+        Calculator calc = new Calculator(steps, 1, 1);
         /*calc.printTree();*/
-        System.out.println(calc.solve(-15));
+        System.out.println(calc.solve(2));
     }
 }
