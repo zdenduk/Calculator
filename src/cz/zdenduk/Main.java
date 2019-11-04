@@ -13,7 +13,6 @@ public class Main {
         steps.add(new MinusStep(8));
 
         Calculator calc = new Calculator(steps, 1, 1);
-        /*calc.printTree();*/
-        System.out.println(calc.solve(2));
+       
     }
 }
