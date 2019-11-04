@@ -13,7 +13,7 @@ public class Solution {
 
     @Override
     public String toString() {
-        solutions.forEach(System.out::println);
+        // todo
         return "";
     }
 }
